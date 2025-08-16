@@ -1,0 +1,9 @@
+h1 {
+  text-align: center;         /* يوسّط النص */
+  margin-top: 10px;           /* يقلل المسافة من فوق */
+  margin-bottom: 10px;        /* يقلل المسافة من تحت */
+  background-color: #f8c6d8;  /* وردي فاتح */
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 26px;
+}

@@ -1,0 +1,243 @@
+/* Panel card like the reference */
+.panel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  padding: 20px;
+}
+
+/* Calendar card */
+.calendar-card {
+  background: #f9f0f4; /* وردي فاتح جداً */
+  border-radius: 10px;
+  border: 1px solid #f0d7e3;
+  overflow: hidden;
+}
+
+.calendar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #f3d1df; /* شريط وردي */
+}
+
+.calendar-head button {
+  background: #ffffff;
+  border: 1px solid #e6c3d2;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.month-label {
+  font-weight: 700;
+}
+
+/* Grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 12px;
+  background: #fff;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+  padding: 6px 0;
+}
+
+.day {
+  text-align: center;
+  padding: 12px 0;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  cursor: default;
+  user-select: none;
+  background: #fafafa;
+}
+
+.day.muted { color: #bbb; background: #fafafa; }
+.day.free  { background: #cdeee7; border-color: #b2e1d8; } /* تركواز للأيام المتاحة */
+.day.selected {
+  outline: 3px solid #d68fc0;             /* إطار بنفسجي */
+  background: #fff;
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  gap: 18px;
+  padding: 10px 14px;
+  font-size: 14px;
+  background: #fff;
+  border-top: 1px solid #f0d7e3;
+}
+.legend-box {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: -2px;
+  border: 1px solid #ccc;
+}
+.legend-box.free { background: #cdeee7; border-color: #b2e1d8; }
+.legend-box.selected { background: #fff; border: 3px solid #d68fc0; }
+
+/* Slots */
+.slots {
+  background: #fff;
+  border-top: 1px solid #f0d7e3;
+  padding: 12px 14px 16px;
+}
+.slots-title { margin-bottom: 8px; }
+
+.slot-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.slot {
+  padding: 8px 12px;
+  border: 1px solid #e6c3d2;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.slot.active {
+  border-color: #d68fc0;
+  background: #fdeefe;
+}
+
+/* Buttons (reuse your globals if موجودة) */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+.back-btn, .next-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.back-btn { background: #eee; }
+.next-btn { background:#f3d1dfdb; color: #fff; }
+
+@media (max-width: 600px) {
+  .calendar-grid { gap: 4px; }
+  .day { padding: 10px 0; }
+}
+
+
+
+
+
+
+
+.step6-wrap { padding: 24px 12px; }
+.title { text-align: center; margin: 0 0 14px; color: #333; }
+
+/* شريط الخطوات (نفس روح التصميم القديم) */
+.steps-row {
+  display: flex; gap: 10px; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.dot {
+  width: 32px; height: 32px; border-radius: 9999px; display: grid; place-items: center;
+  font-size: 14px; background: #f0f0f0; color: #555;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.03) inset;
+}
+.dot.active { background: #ffd1e0; color: #7a2b46; }
+.dot.done   { background: #e6f7f1; color: #236b4a; }
+.dash { width: 36px; height: 2px; background: #e9c6d0; border-radius: 2px; }
+
+/* اللوحة */
+.panel {
+  max-width: 820px; margin: 0 auto; background: #fff; border-radius: 14px;
+  padding: 18px; box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+.panel-head h2 { margin: 0 0 6px; }
+.panel-head p  { margin: 0 0 12px; color: #666; }
+
+/* بطاقة التقويم */
+.calendar-card {
+  background: #fff0f4;
+  border: 1px solid #fed7e3;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.calendar-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 12px; background: #ffe6ee;
+}
+.calendar-head .month-label { font-weight: 600; }
+.calendar-head button {
+  border: none; background: white; width: 32px; height: 32px; border-radius: 6px;
+  cursor: pointer;
+}
+
+.calendar-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 8px; padding: 12px;
+}
+.weekday {
+  text-align: center; font-weight: 600; color: #666; font-size: 14px;
+}
+.day {
+  height: 42px; border-radius: 12px; border: 1px dashed #eee;
+  background: #fafafa; color: #999; display: grid; place-items: center;
+  font-weight: 500;
+}
+.day.free {
+  background: #e8f6ef; color: #205f48; border: 1px solid #c8eadc; cursor: pointer;
+}
+.day.free:hover { filter: brightness(0.97); }
+.day.selected { outline: 2px solid #9ad6c4; background: #def3ec; }
+
+.day.muted { visibility: hidden; }
+
+/* الأسطورة */
+.legend { display: flex; gap: 16px; padding: 0 12px 12px; color: #666; }
+.legend-box { width: 14px; height: 14px; border-radius: 4px; display: inline-block; margin-right: 6px; }
+.legend-box.free { background: #e8f6ef; border: 1px solid #c8eadc; }
+.legend-box.selected { background: #def3ec; border: 1px solid #9ad6c4; }
+
+/* الأوقات */
+.slots { border-top: 1px dashed #f3c8d6; padding: 12px; }
+.slots-title { margin-bottom: 8px; color: #333; }
+.slot-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.slot {
+  padding: 8px 12px; border: 1px solid #c8eadc; background: #e8f6ef; color: #205f48;
+  border-radius: 10px; cursor: pointer;
+}
+.slot:hover { filter: brightness(0.96); }
+.slot.active { background: #d1efe3; border-color: #9ad6c4; }
+
+/* أزرار تحت */
+.buttons {
+  margin-top: 14px; display: flex; justify-content: space-between; gap: 10px;
+}
+.back-btn, .next-btn {
+  padding: 10px 14px; border-radius: 10px; border: none; cursor: pointer;
+}
+.back-btn { background: #eee; }
+.next-btn { background: #ff88ab; color: white; }
+.next-btn:hover { filter: brightness(0.95); }
+
+/* استجابة */
+@media (max-width: 560px) {
+  .calendar-grid { gap: 6px; }
+  .day { height: 38px; border-radius: 10px; }
+}
+
+
+
+
+
+
+
