@@ -61,7 +61,7 @@ export default function Step9() {
       </div>
       {/* بطاقة الشرح */}
       <section className="card card--primary">
-        <h2 className="card__title">7. Prüfen &amp; Buchen</h2>
+        <h2 className="card__title">9. Prüfen &amp; Buchen</h2>
         <p className="card__text">
           Bitte prüfen Sie Ihre Angaben und klicken Sie dann auf „Weiter“.<br />
           Anschließend erhalten Sie eine Bestätigungsmail. Der Versand der
