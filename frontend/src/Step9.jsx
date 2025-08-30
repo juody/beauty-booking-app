@@ -1,111 +1,127 @@
-import React from "react";
+
+import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Step9() {
   const navigate = useNavigate();
 
-  // Helper للقراءة من LocalStorage
+  
   const get = (k) => localStorage.getItem(k) || "";
 
-  // بيانات مختارة من الخطوات السابقة
-  let chosen = {};
-  try {
-    chosen = JSON.parse(localStorage.getItem("chosenSlot") || "{}");
-  } catch {}
+  
+  const data = useMemo(() => {
+    let preview = {};
+    try { preview = JSON.parse(localStorage.getItem("booking_preview") || "{}"); } catch {}
 
-  const date = chosen.date || get("date");
-  const time = chosen.time || get("time");
-  const treatment = get("treatment") || get("treatment_type");
-  const fullName =
-    get("name") ||
-    [get("first_name"), get("last_name")].filter(Boolean).join(" ");
-  const email = get("email");
-  const phone = get("phone");
-  const address = get("address");
-  const note = get("note");
+    let chosen = {};
+    try { chosen = JSON.parse(localStorage.getItem("chosenSlot") || "{}"); } catch {}
 
-  const deDate = date
-    ? new Date(`${date}T00:00:00`).toLocaleDateString("de-DE", {
-        weekday: "long",
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
+    
+    const date =
+      preview.appointment_date || chosen.date || get("date") || "";
+    const timeRaw =
+      preview.appointment_time || chosen.time || get("time") || "";
+    const time = timeRaw.toString().trim().replace(/\s*Uhr$/i, "");
+
+    const service =
+      preview.service_label || preview.service ||
+      get("service_label") || get("treatment_type") || get("treatment") || "";
+
+    const first = preview.first_name || get("first_name") || "";
+    const last  = preview.last_name  || get("last_name")  || "";
+    const fullName =
+      preview.full_name || get("name") || [first, last].filter(Boolean).join(" ");
+
+    const email = preview.email || get("email") || "";
+    const phone = preview.phone || get("phone") || "";
+
+    const address =
+      preview.address ||
+      get("address") ||
+      [preview.street || get("street"),
+       [preview.zip || get("zip"), preview.city || get("city")].filter(Boolean).join(" ")
+      ].filter(Boolean).join(", ");
+
+    const note = preview.note || get("note") || "";
+
+    return { date, time, service, fullName, email, phone, address, note };
+  }, []);
+
+
+  const deDate = data.date
+    ? new Date(`${data.date}T00:00:00`).toLocaleDateString("de-DE", {
+        weekday: "long", day: "2-digit", month: "long", year: "numeric",
       })
     : "—";
-
-  const handleBack = () => navigate("/step6");
-  const handleNext = () => {
-    // لو حابة تبعتي للباك-إند، ضيفي الطلب هون قبل الانتقال
-    navigate("/step8");
-  };
+  const prettyTime = data.time
+    ? data.time.replace(/:00$/, "") + " Uhr"
+    : "";
 
   return (
     <div className="step9 page">
       <header className="header">
-        {/* لو عندك صورة هيدر فعّلي السطر التالي */}
-        {/* <img src="/images/header.jpg" alt="Header" className="header-image" /> */}
         <h1>Terminbuchung – Laser Couture Hamburg</h1>
       </header>
 
-             {/* Steps Navigation */}
+    
       <div className="steps-wrapper">
-        <div className="step-circle">?<i className="fas fa-question" /></div>
+        <div className="step-circle completed"><i className="fas fa-question" /></div>
         <div className="line" />
-        <div className="step-circle active">📅<i className="fas fa-calendar-alt" /></div>
+        <div className="step-circle completed"><i className="fas fa-calendar-alt" /></div>
         <div className="line" />
-        <div className="step-circle">✏️<i className="fas fa-pen" /></div>
+        <div className="step-circle completed"><i className="fas fa-pen" /></div>
         <div className="line" />
-        <div className="step-circle">👁<i className="fas fa-eye" /></div>
+        <div className="step-circle active"><i className="fas fa-eye" /></div>
         <div className="line" />
-        <div className="step-circle">✔<i className="fas fa-check" /></div>
+        <div className="step-circle"><i className="fas fa-check" /></div>
       </div>
-      {/* بطاقة الشرح */}
-      <section className="card card--primary">
-        <h2 className="card__title">9. Prüfen &amp; Buchen</h2>
+
+      <h2 className="card__title">9. Prüfen &amp; Buchen</h2>
+
+      <section className="step-box">
         <p className="card__text">
-          Bitte prüfen Sie Ihre Angaben und klicken Sie dann auf „Weiter“.<br />
-          Anschließend erhalten Sie eine Bestätigungsmail. Der Versand der
-          E-Mail erfolgt unverschlüsselt.
+          Bitte prüfen Sie Ihre Angaben und klicken Sie dann auf „Weiter“. <br />
+          Anschließend erhalten Sie eine Bestätigungsmail. Der Versand der E-Mail erfolgt unverschlüsselt.
         </p>
       </section>
 
-      {/* الملخص */}
-      <section className="summary">
+      <section className="step-box">
         <h3>Übersicht</h3>
         <dl>
           <dt>Termin:</dt>
           <dd>
-            {deDate} {time || ""}
+            {deDate} {prettyTime}
           </dd>
 
           <dt>Behandlung:</dt>
-          <dd>{treatment || "—"}</dd>
+          <dd>{data.service || "—"}</dd>
 
           <dt>Kunde:</dt>
-          <dd>{fullName || "—"}</dd>
+          <dd>{data.fullName || "—"}</dd>
 
           <dt>E-Mail:</dt>
-          <dd>{email || "—"}</dd>
+          <dd>{data.email || "—"}</dd>
 
           <dt>Telefon:</dt>
-          <dd>{phone || "—"}</dd>
+          <dd>{data.phone || "—"}</dd>
 
           <dt>Adresse:</dt>
-          <dd>{address || "—"}</dd>
+          <dd>{data.address || "—"}</dd>
 
           <dt>Bemerkung:</dt>
-          <dd>{note || "—"}</dd>
+          <dd>{data.note || "—"}</dd>
         </dl>
+        <div className="button-row">
+          <button type="button" className="btn btn-light" onClick={() => navigate("/step8")}>
+            « Zurück
+          </button>
+          <button type="button" className="btn btn-light" onClick={() => navigate("/step10")}>
+            Weiter »
+          </button>
+        </div>
       </section>
 
-    <div className="button-row">
-     <button type="button" className="btn btn-light" onClick={() => navigate("/step8")}>
-         « Zurück
-     </button>
-    <button type="button" className="btn btn-light" onClick={() => navigate("/step10")}>
-        Weiter »
-     </button>
-     </div>
+      
     </div>
   );
 }

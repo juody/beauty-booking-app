@@ -129,20 +129,10 @@ back-btn {
     border: none;
 }
 
-
-h1 {
-  text-align: center;         /* يوسّط النص */
-  margin-top: 10px;           /* يقلل المسافة من فوق */
-  margin-bottom: 10px;        /* يقلل المسافة من تحت */
-  background-color: #f8c6d8;  /* وردي فاتح */
-  padding: 15px;
-  border-radius: 10px;
-  font-size: 26px;
+/* عند المرور فوق الزر */
+.button-row .btn:hover {
+  transform: translateY(-2px);   /* يطلع لفوق شوي */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* ظل */
 }
-
-
-
-
-
 
 

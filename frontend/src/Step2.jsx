@@ -17,32 +17,32 @@ export default function Step2() {
   };
 
   return (
-    <div className="step step2">
-      {/* Header */}
-      <header className="header"></header>
-      <img src="/images/header.jpg" alt="Header Image" className="header-image" />
+     <div className="step step2">
+      <header className="header">
+       <img src="https://th.bing.com/th/id/OIP.R4iLvoqIuyklcih8jVTBxwAAAA?w=143&h=150&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Header" className="header-image" />
+      </header>
       <h1 className="page-title">Terminbuchung – Laser Couture Hamburg</h1>
 
-      {/* Steps Navigation */}
+      
       <div className="steps-wrapper">
-        <div className="step-circle">?<i className="fas fa-question" /></div>
+        <div className="step-circle completed"><i className="fas fa-question" /></div>
         <div className="line" />
-        <div className="step-circle active">📅<i className="fas fa-calendar-alt" /></div>
+        <div className="step-circle active"><i className="fas fa-calendar-alt" /></div>
         <div className="line" />
-        <div className="step-circle">✏️<i className="fas fa-pen" /></div>
+        <div className="step-circle"><i className="fas fa-pen" /></div>
         <div className="line" />
-        <div className="step-circle">👁<i className="fas fa-eye" /></div>
+        <div className="step-circle"><i className="fas fa-eye" /></div>
         <div className="line" />
-        <div className="step-circle">✔<i className="fas fa-check" /></div>
+        <div className="step-circle"><i className="fas fa-check" /></div>
       </div>
 
-      {/* Step Box */}
+    
       <div className="step-box">
         <h2>2. Fragen zum Termin</h2>
         <p>Bitte treffen Sie eine Auswahl:</p>
         <p><strong>Sind Sie:</strong></p>
 
-        {/* Gender Options */}
+        
         <div className="gender-selection">
           {/* Frau */}
           <label className="gender-option">

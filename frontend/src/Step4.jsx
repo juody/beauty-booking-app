@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './style-step4.css'; // اختياري لو بدك تنسيق خاص لهالخطوة
+import './style-step4.css'; 
 
 export default function Step4() {
   const navigate = useNavigate();
   const [rubyOption, setRubyOption] = useState('');
 
-  // تحميل القيمة المحفوظة (إن وجدت)
+
   useEffect(() => {
     const saved = localStorage.getItem('ruby') || '';
     setRubyOption(saved);
@@ -19,24 +19,34 @@ export default function Step4() {
   };
 
   return (
-    <div className="step step4">
-      <header>
-        <img src="/images/header.jpg" alt="Header Image" className="header-image" />
-        <h1>Terminbuchung – Laser Couture Hamburg</h1>
+     <div className="step step4">
+      {/* Header */}
+      <header className="header">
+        <img src="https://th.bing.com/th/id/OIP.R4iLvoqIuyklcih8jVTBxwAAAA?w=143&h=150&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="Header" className="header-image" />
       </header>
 
-            {/* Steps Navigation */}
       <div className="steps-wrapper">
-        <div className="step-circle">?<i className="fas fa-question" /></div>
+        <div className="step-circle completed">
+          <i className="fas fa-question" />
+        </div>
         <div className="line" />
-        <div className="step-circle active">📅<i className="fas fa-calendar-alt" /></div>
+        <div className="step-circle active">
+          <i className="fas fa-calendar-alt" />
+        </div>
         <div className="line" />
-        <div className="step-circle">✏️<i className="fas fa-pen" /></div>
+        <div className="step-circle">
+          <i className="fas fa-pen" />
+        </div>
         <div className="line" />
-        <div className="step-circle">👁<i className="fas fa-eye" /></div>
+        <div className="step-circle">
+          <i className="fas fa-eye" />
+        </div>
         <div className="line" />
-        <div className="step-circle">✔<i className="fas fa-check" /></div>
+        <div className="step-circle">
+          <i className="fas fa-check" />
+        </div>
       </div>
+
 
       <section className="step-box">
         <h2>4. Fragen zum Termin</h2>
@@ -134,18 +144,20 @@ export default function Step4() {
             <br />
             <small>1 Sitzung • 25 min • 60€</small>
           </label>
+
+              <div className="button-row">
+                <button type="button" className="btn btn-light" onClick={() => navigate("/step3")}>
+                  « Zurück
+                </button>
+                <button type="button" className="btn btn-light" onClick={() => navigate("/step5")}>
+                  Weiter »
+                </button>
+              </div>
              </form>
                </section>
 
               
-           <div className="button-row">
-              <button type="button" className="btn btn-light" onClick={() => navigate("/step3")}>
-                « Zurück
-              </button>
-              <button type="button" className="btn btn-light" onClick={() => navigate("/step5")}>
-                Weiter »
-              </button>
-            </div>
+
 
     </div>
   );
