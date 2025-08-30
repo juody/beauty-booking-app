@@ -191,9 +191,10 @@ app.post('/api/appointments', async (req, res) => {
               <li><strong>Behandlung:</strong> ${service || '—'}</li>
             </ul>
 
-            <p>Bitte erscheinen Sie pünktlich zu Ihrem Termin.
-            Eine Absage ist nur bis 24 Stunden vorher möglich.
-            Bei späterer Absage berechnen wir eine Ausfallgebühr von <strong>50 €</strong>.</p>
+            <p>Bitte erscheinen Sie pünktlich zu vereinbaten Termin.Eine Stornierung ist nur 24
+              Stunden vorher möglich.
+              Bei einer Absage weniger als 24 Stunden vor dem 
+              Termin wird eine Strafgebühr von erhoben <strong>50 €</strong>.</p>
 
             <p>Wir freuen uns auf Sie!<br/>
             Ihr Team von Laser Couture Hamburg</p>
